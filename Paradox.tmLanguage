@@ -2,21 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>brackets</key>
-	<array>
-		<dict>
-			<key>match</key>
-			<string>\}</string>
-			<key>name</key>
-			<string>keyword.operator.paradox</string>
-			<key>pop</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>main</string>
-		</dict>
-	</array>
 	<key>fileTypes</key>
 	<array>
 		<string>txt</string>
@@ -27,70 +12,115 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>\b(OR|AND|NOT|NAND|NOR)\b</string>
-			<key>name</key>
-			<string>keyword.operator.logical.paradox</string>
+			<key>include</key>
+			<string>#common</string>
 		</dict>
 		<dict>
-			<key>match</key>
-			<string>\b(ROOT|(?:FROM)+|(?:PREV)+)\b</string>
-			<key>name</key>
-			<string>keyword.operator.paradox</string>
+			<key>include</key>
+			<string>#block</string>
 		</dict>
 		<dict>
-			<key>match</key>
-			<string>\#.*$\n?</string>
-			<key>name</key>
-			<string>comment.line.percent-sign</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(yes|no)\b</string>
-			<key>name</key>
-			<string>constant.language.paradox</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>=</string>
-			<key>name</key>
-			<string>keyword.operator.paradox</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\"(.*?)\"</string>
-			<key>name</key>
-			<string>string.double.paradox</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b\d+\.\d+\.\d+\b</string>
-			<key>name</key>
-			<string>constant.numeric.date</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>-?\b[0-9]+(?:\.[0-9]+)?\b</string>
-			<key>name</key>
-			<string>constant.numeric</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\{</string>
-			<key>name</key>
-			<string>keyword.operator.paradox</string>
-			<key>push</key>
-			<string>brackets</string>
-		</dict>
-		<dict>
+			<key>comment</key>
+			<string>A } that closes nothing (only reachable outside any { } block)</string>
 			<key>match</key>
 			<string>\}</string>
 			<key>name</key>
-			<string>keyword.operator.paradox</string>
-			<key>scope</key>
-			<string>invalid.illegal.stray-bracket-end</string>
+			<string>invalid.illegal.stray-bracket-end.paradox</string>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>block</key>
+		<dict>
+			<key>begin</key>
+			<string>\{</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.paradox</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\}</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.paradox</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.block.paradox</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#common</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#block</string>
+				</dict>
+			</array>
+		</dict>
+		<key>common</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(OR|AND|NOT|NAND|NOR)\b</string>
+					<key>name</key>
+					<string>keyword.operator.logical.paradox</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(ROOT|(?:FROM)+|(?:PREV)+)\b</string>
+					<key>name</key>
+					<string>keyword.operator.paradox</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\#.*$\n?</string>
+					<key>name</key>
+					<string>comment.line.number-sign.paradox</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(yes|no)\b</string>
+					<key>name</key>
+					<string>constant.language.paradox</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>=</string>
+					<key>name</key>
+					<string>keyword.operator.paradox</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\"(.*?)\"</string>
+					<key>name</key>
+					<string>string.quoted.double.paradox</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b\d+\.\d+\.\d+\b</string>
+					<key>name</key>
+					<string>constant.numeric.date.paradox</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>-?\b[0-9]+(?:\.[0-9]+)?\b</string>
+					<key>name</key>
+					<string>constant.numeric.paradox</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>source.paradox</string>
 	<key>uuid</key>
